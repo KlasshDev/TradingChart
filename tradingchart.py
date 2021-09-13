@@ -4,8 +4,8 @@
 #   - 2021.08.08 -
 #------------------------------------------------------------------------------
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 from pandas_datareader import data as web
@@ -33,18 +33,18 @@ Trace1 = {
     'opacity': 1
 }
 
-# Moving average for 30 days line
-avg_30 = df.Close.rolling(window=30, min_periods=1).mean()
+# Moving average for 10 days line
+avg_10 = df.Close.rolling(window=10, min_periods=1).mean()
 Trace2 = {
     'x': df.index,
-    'y': avg_30,
+    'y': avg_10,
     'type': 'scatter',
     'mode': 'lines',
     'line': {
         'width': 1,
-        'color': 'teal',
+        'color': 'purple',
             },
-    'name': 'Moving Average of 30 Periods'
+    'name': '10 Day'
 }
 
 # Moving average for 50 days line
@@ -56,13 +56,39 @@ Trace3 = {
     'mode': 'lines',
     'line': {
         'width': 1,
-        'color': 'red',
+        'color': 'Yellow',
             },
-    'name': 'Moving Average of 50 Periods'
+    'name': '50 Day'
+}
+# Moving average for 100 days line
+avg_100 = df.Close.rolling(window=100, min_periods=1).mean()
+Trace4 = {
+    'x': df.index,
+    'y': avg_100,
+    'type': 'scatter',
+    'mode': 'lines',
+    'line': {
+        'width': 1,
+        'color': 'turquoise',
+            },
+    'name': '100 Day'
 }
 
+# Moving average for 200 days line
+avg_200 = df.Close.rolling(window=200, min_periods=1).mean()
+Trace5 = {
+    'x': df.index,
+    'y': avg_200,
+    'type': 'scatter',
+    'mode': 'lines',
+    'line': {
+        'width': 1,
+        'color': 'white',
+            },
+    'name': '200 Day'
+}
 # Volume Bar Graph
-Trace4 = {
+Trace6 = {
     'x': df.index,
     'y': df.Volume,
     'type': 'bar',
@@ -99,6 +125,8 @@ def display_stock(value):
     fig.add_trace(Trace2, row=1, col=1)
     fig.add_trace(Trace3, row=1, col=1)
     fig.add_trace(Trace4, row=2, col=1)
+    fig.add_trace(Trace5, row=2, col=1)
+    fig.add_trace(Trace6, row=2, col=1)
     return fig
 
 
