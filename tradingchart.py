@@ -13,7 +13,7 @@ from plotly.subplots import make_subplots
 import pandas as pd
 from datetime import datetime
 
-stock = "NECB"
+stock = "SPY"
 df = web.DataReader(stock, data_source='yahoo', start='01-01-2019')
 #------------------------------------------------------------------------------
 #   - Different Traces to add to charts -
@@ -101,25 +101,29 @@ Trace6 = {
 #------------------------------------------------------------------------------
 app = dash.Dash(__name__)
 
-app.layout = html.Div([
-    dcc.Checklist(
-        id='toggle-rangeslider',
-        options=[{'label': 'Include Rangeslider', 
-                  'value': 'slider'}],
-        value=['slider']
-    ),
-    dcc.Graph(id="graph"),
-])
+app.layout = html.Div(
+    [
+    dcc.Input(
+        id='stockInput',
+        type="text",
+        placeholder="",
+        debounce=True),
+
+    dcc.Graph(id="graph")
+    ]
+)
+
 
 @app.callback(
     Output("graph", "figure"), 
-    [Input("toggle-rangeslider", "value")])
+    [Input("stockInput", "value")])
+
 def display_stock(value):
     fig = make_subplots(rows=2, cols=1, shared_xaxes=True,
-            vertical_spacing=0.03, subplot_titles=(str(stock), 'Volume'),
+            vertical_spacing=0.03, subplot_titles=(value, 'Volume'),
             row_width=[0.2, 0.7])
     fig.update_layout(
-        xaxis_rangeslider_visible='slider' in value,
+        xaxis_rangeslider_visible=False,
         template="plotly_dark")
     fig.add_trace(Trace1, row=1, col=1)
     fig.add_trace(Trace2, row=1, col=1)
@@ -128,13 +132,6 @@ def display_stock(value):
     fig.add_trace(Trace5, row=1, col=1)
     fig.add_trace(Trace6, row=2, col=1)
     return fig
-
-
-
-
-
-
-
 
 
 #------------------------------------------------------------------------------
