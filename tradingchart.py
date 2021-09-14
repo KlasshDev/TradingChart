@@ -13,7 +13,7 @@ from plotly.subplots import make_subplots
 import pandas as pd
 from datetime import datetime
 
-stock = "GOOGL"
+stock = "NECB"
 df = web.DataReader(stock, data_source='yahoo', start='01-01-2019')
 #------------------------------------------------------------------------------
 #   - Different Traces to add to charts -
@@ -124,8 +124,8 @@ def display_stock(value):
     fig.add_trace(Trace1, row=1, col=1)
     fig.add_trace(Trace2, row=1, col=1)
     fig.add_trace(Trace3, row=1, col=1)
-    fig.add_trace(Trace4, row=2, col=1)
-    fig.add_trace(Trace5, row=2, col=1)
+    fig.add_trace(Trace4, row=1, col=1)
+    fig.add_trace(Trace5, row=1, col=1)
     fig.add_trace(Trace6, row=2, col=1)
     return fig
 
