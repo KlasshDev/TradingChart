@@ -13,6 +13,7 @@ from plotly.subplots import make_subplots
 import pandas as pd
 from datetime import datetime
 
+external_stylesheets = ["/assets/style.css"]
 #------------------------------------------------------------------------------
 #   - Dash App -
 #------------------------------------------------------------------------------
@@ -25,10 +26,11 @@ app.layout = html.Div(
         type="text",
         value="SPY",
         placeholder="",
-        debounce=True),
+        debounce=True,
+        ),
 
     dcc.Graph(id="graph")
-    ]
+    ],
 )
 
 

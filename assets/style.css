@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: cyan;
+    margin-left: 20px;
+}
+
+input[type=text] {
+    border: 1px solid cyan;
+    background-color: black;
+    color: cyan;
+}
+
