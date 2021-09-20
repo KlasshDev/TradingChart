@@ -41,6 +41,8 @@ app.layout = html.Div(
 def display_stock(value):
     stock = value
     df = web.DataReader(str(stock), data_source='yahoo', start='01-01-2019')
+    
+    # Create the Charts and moving averages
  # Main candle stick chart
     Trace1 = {
         'x': df.index,
@@ -117,9 +119,12 @@ def display_stock(value):
         'name': 'Trading Volume'
     }   
     # Make 2 charts
-    fig = make_subplots(rows=2, cols=1, shared_xaxes=True,
-            vertical_spacing=0.03, subplot_titles=(value, 'Volume'),
-            row_width=[0.2, 0.7])
+    fig = make_subplots(rows=2, cols=1, 
+            shared_xaxes=True,
+            vertical_spacing=0, 
+            subplot_titles=(value,),
+            row_width=[0.2, 0.7]
+            )
     # Add layout options
     fig.update_layout(
         xaxis_rangeslider_visible=False,
@@ -127,12 +132,12 @@ def display_stock(value):
         height=850
         )
     # Add Traces to the figre
-    fig.add_trace(Trace1, row=1, col=1)
-    fig.add_trace(Trace2, row=1, col=1)
-    fig.add_trace(Trace3, row=1, col=1)
-    fig.add_trace(Trace4, row=1, col=1)
-    fig.add_trace(Trace5, row=1, col=1)
-    fig.add_trace(Trace6, row=2, col=1)
+    fig.add_trace(Trace1)
+    fig.add_trace(Trace2)
+    fig.add_trace(Trace3)
+    fig.add_trace(Trace4)
+    fig.add_trace(Trace5)
+    fig.add_trace(Trace6, 2,1) #row2, col1
     return fig
 
 
