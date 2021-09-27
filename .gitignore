@@ -1,3 +1,2 @@
-/stockENV/
-*.*~
-
+/tradeENV/
+.gitignore
