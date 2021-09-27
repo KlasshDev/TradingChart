@@ -179,7 +179,7 @@ def display_stock(value):
                line=dict(color='yellow', width=1),
                name='%D'), col=1, row=3)
             
-    fig.add_hline(y=30, col=1, row=3, line_width=1, line_dash='dash')
+    fig.add_hline(y=32, col=1, row=3, line_width=1, line_dash='dash')
     fig.add_hline(y=80, col=1, row=3, line_width=1, line_dash='dash')
     fig.update_xaxes(rangebreaks=[dict(bounds=["sat", "mon"])])
     return fig
