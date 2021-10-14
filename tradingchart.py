@@ -49,8 +49,8 @@ def display_stock(value):
     
     # Adding Stochastic Indicators
 #    df.ta.stoch(high='high', low='low', k=14, d=3, append=True)
-    k_period = 19
-    d_period = 4
+    k_period = 10
+    d_period = 3
 
     df['n_high'] = df['High'].rolling(k_period).max() 
     df['n_low'] = df['Low'].rolling(k_period).min() 
@@ -67,7 +67,7 @@ def display_stock(value):
         'type': 'candlestick',
         'name': stock,
         'showlegend':True,
-        'line_width': 1,
+        'line_width': .8,
         'opacity': 1
     }
 
